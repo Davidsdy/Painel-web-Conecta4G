@@ -1,0 +1,26 @@
+body{
+    background-color:#242d4a;
+    color: white;
+    padding: 4px;
+    font-size: large;
+}
+/*.container{
+    max-width: 500px;
+    margin: 0 auto;
+}*/
+.container-login{
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.container{
+    margin-top: 5%;
+}
+
+.card-header {
+    padding: 5px 15px;
+}
+
+.profile-img {
+    margin: 0 auto 10px;
+}
