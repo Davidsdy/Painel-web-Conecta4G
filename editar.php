@@ -279,38 +279,39 @@ elseif ($acao == "dados") :
                     </script>";
         endif;
 
-elseif ($_POST['pasta']) :
-    $pasta = $_POST['pasta'];
+    elseif ($_POST['pasta']) :
+        $pasta = $_POST['pasta'];
 
-    $sql = $conn->query("SELECT * FROM usuarios WHERE pasta_att='$pasta'");
-    $contar = $sql->rowCount();
-    $dados = $sql->fetch(PDO::FETCH_ASSOC);
-    if ($contar > 0 && $dados['id'] != $uid) :
-        echo "<script>
+        $sql = $conn->query("SELECT * FROM usuarios WHERE pasta_att='$pasta'");
+        $contar = $sql->rowCount();
+        $dados = $sql->fetch(PDO::FETCH_ASSOC);
+        if ($contar > 0 && $dados['id'] != $uid) :
+            echo "<script>
         alert('Esta pasta já está em uso !');
         window.location='" . getConfig('link') . "/perfil.php';
         </script>";
-    elseif (empty($pasta)) :
-        echo "<script>
+        elseif (empty($pasta)) :
+            echo "<script>
         alert('O nome da pasta não pode ficar vazio !');
         window.location='" . getConfig('link') . "/perfil.php';
         </script>";
-    else :
-        $pasta_velha = "update/" . $_POST['pasta_velha'];
-        $pasta_nova = "update/" . $_POST['pasta'];
+        else :
+            $pasta_velha = "update/" . $_POST['pasta_velha'];
+            $pasta_nova = "update/" . $_POST['pasta'];
 
-        rename($pasta_velha, $pasta_nova);
+            rename($pasta_velha, $pasta_nova);
 
-        $sms = getConfig('link') . '/update/' . $_POST['pasta'] . '/sms';
-        $update = getConfig('link') . '/update/' . $_POST['pasta'] . '/config';
+            $sms = getConfig('link') . '/update/' . $_POST['pasta'] . '/sms';
+            $update = getConfig('link') . '/update/' . $_POST['pasta'] . '/config';
 
-        $conn->query("UPDATE configuracoes SET att='$update', sms='$sms' WHERE id_owner='" . getIdBySid($sid) . "'");
+            $conn->query("UPDATE configuracoes SET att='$update', sms='$sms' WHERE id_owner='" . getIdBySid($sid) . "'");
 
-        $sql = $conn->query("UPDATE usuarios SET pasta_att='$pasta' WHERE id='" . getIdBySid($sid) . "'");
-        echo "<script>
+            $sql = $conn->query("UPDATE usuarios SET pasta_att='$pasta' WHERE id='" . getIdBySid($sid) . "'");
+            echo "<script>
         alert('Pasta atualizada com sucesso !');
         window.location='" . getConfig('link') . "/perfil.php';
         </script>";
+        endif;
     endif;
 
 elseif ($acao == "usuarios") :
@@ -343,9 +344,9 @@ elseif ($acao == "usuarios") :
 
             if ($sql) :
                 echo "<script>
-            alert('Usuário editado com sucesso !');
-            window.location='" . getConfig('link') . "/usuarios.php';
-            </script>";
+                alert('Usuário editado com sucesso !');
+				window.location='" . getConfig('link') . "/usuarios.php';
+                </script>";
             endif;
         else :
 
@@ -365,18 +366,14 @@ elseif ($acao == "usuarios") :
 
             if ($sql) :
                 echo "<script>
-            alert('Senha do usuário atualizada com sucesso !');
-            window.location='" . getConfig('link') . "/usuarios.php';
-            </script>";
+                alert('Senha do usuário atualizada com sucesso !');
+                window.location='" . getConfig('link') . "/usuarios.php';
+                </script>";
 
             endif;
         endif;
-
-    else :
-        header("location: /");
     endif;
 
 else :
     header("location: /");
-endif;
 endif;
