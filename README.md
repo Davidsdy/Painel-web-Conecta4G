@@ -30,7 +30,12 @@
 <b>USUARIO_DB</b> (usuário do seu banco de dados)<br>
 <b>SENHA_DB</b> (senha do seu banco de dados)<br>
 <b>NOME_DB</b> (nome do seu banco de dados)
-</li></ol><br>
+</li>
+<br><br>
+<li>Altere o link do site no arquivo <b>conecta.sql</b> antes de fazer o upload para o banco de dados</li> <br>
+</ol>
+<center>
+<img src="https://i.ibb.co/ypbQJQM/conecta.png"></center><br>
 
 <h3>☑️ Configurações no app</h3> <br>
 <ol>
